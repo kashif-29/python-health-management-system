@@ -1,0 +1,55 @@
+import datetime
+def getdate():
+    return datetime.datetime.now()
+
+def valid():
+    print("Enter Valid input")
+while (1):
+    print("Health Management System")
+    print("Do you want to log or reterive?, Press 1 for log data , 2 for retrieve data and press 3 to check name of people who used this system")
+    datalog = int(input())
+
+    if datalog == 1:
+        namech = str(input("Enter name whose data do you want to log \n"))
+        b = int(input("Press 1 for Exercise and 2 for Food \n"))
+        if b == 1:
+                exercise = input("Enter exercise \n")
+                with open(namech+"ex.txt", "a") as f:
+                    f.write(str(getdate()) + ": " + exercise + "\n")
+                with open("register.txt", "a") as f:
+                    f.write(str(getdate()) + ": " + "Exercise" + ": " + namech + "\n")
+                    print("Data Saved Successfully")
+
+        elif b==2:
+                food = input("Enter Food \n")
+                with open(namech+"food.txt", "a") as f:
+                    f.write(str(getdate()) + ": " + food + "\n")
+                    with open("register.txt", "a") as f:
+                        f.write(str(getdate()) + ": " + "Food  " + ": " + namech + "\n")
+                print("Data Saved Successfully")
+
+    elif datalog==2:
+        namech = str(input("Enter name whose data do you want to log \n"))
+        b = int(input("enter 1 for exercise and 2 for food \n"))
+        if b==1:
+                with open(namech+"ex.txt") as f:
+                     for i in f:
+                           print(i, end="")
+        elif b==2:
+                with open(namech+"food.txt") as f:
+                     for i in f:
+                            print(i, end="")
+
+    elif datalog==3:
+        with open("register.txt") as f:
+            for i in f:
+                print(i, end="")
+
+    else:
+        valid()
+    print("Do you want to execute again?, Enter yes or exit")
+    option = input()
+    if option=="yes":
+           continue
+    else:
+            break
